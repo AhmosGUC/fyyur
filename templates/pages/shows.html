@@ -1,0 +1,33 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Fyyur | Shows{% endblock %}
+{% block content %}
+<div class="row shows">
+    <h4>{% if next_shows | length>0 %}Upcoming Shows{% else %}No Shows Yet{% endif %}</h4>
+    {%for show in next_shows %}
+    <div class="col-sm-4">
+        <div class="tile tile-show">
+            <img src="{{ show.artist_image_link }}" alt="Artist Image" />
+            <h4>{{ show.start_time|datetime('full') }}</h4>
+            <h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
+            <p>playing at</p>
+            <h5><a href="/venues/{{ show.venue_id }}">{{ show.venue_name }}</a></h5>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="row shows">
+    <h4>{% if past_shows | length>0 %}Past Shows{% endif %}</h4>
+    {%for show in past_shows %}
+    <div class="col-sm-4">
+        <div class="tile tile-show">
+            <img src="{{ show.artist_image_link }}" alt="Artist Image" />
+            <h4>{{ show.start_time|datetime('full') }}</h4>
+            <h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
+            <p>playing at</p>
+            <h5><a href="/venues/{{ show.venue_id }}">{{ show.venue_name }}</a></h5>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
